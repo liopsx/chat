@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Centro de monitoreo de conexiones y espionaje de mensajes</h1>
+    <div id="conteo-conexiones">
+        Clientes conectados <span id="contador-cliente">0000</span>
+    </div>
+    <div>
+        <ul id="espionaje"></ul>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+
+    var conteoconex = document.getElementById('conteo-conexiones');
+    var conversacionindevida = document.getElementById('espionaje');
+
+    socket.on('contador', function (dato) {
+        document.getElementById('contador-cliente').innerHTML = dato;
+    });
+
+    socket.on('espionaje', function (msg) {
+        var item = document.createElement('li');
+        item.textContent = msg;
+        conversacionindevida.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+</script>
+
+</html>
