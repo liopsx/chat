@@ -8,7 +8,7 @@ const io = new Server(server);
 const mongoose = require('mongoose');
 
 //conexin db
-mongoose.connect('mongodb://localhost:27017/proyecto3')
+mongoose.connect('mongodb://192.168.10.34:27017/proyecto3')
 .then(db=>console.log(' conexion correcta'))
 .catch(err=> console.log(err))
 
